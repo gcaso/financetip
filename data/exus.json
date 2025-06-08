@@ -1,0 +1,124 @@
+{
+  "name": "MSCI World ex USA (EXUS)",
+  "countries": [
+    [
+      "Giappone",
+      20
+    ],
+    [
+      "UK",
+      15
+    ],
+    [
+      "Svizzera",
+      12
+    ],
+    [
+      "Francia",
+      10
+    ],
+    [
+      "Taiwan",
+      9
+    ],
+    [
+      "Corea del Sud",
+      8
+    ],
+    [
+      "Paesi Bassi",
+      6
+    ],
+    [
+      "Germania",
+      5
+    ],
+    [
+      "Australia",
+      3
+    ],
+    [
+      "Canada",
+      2
+    ],
+    [
+      "Svezia",
+      1.5
+    ],
+    [
+      "Hong Kong",
+      1
+    ],
+    [
+      "Singapore",
+      0.5
+    ]
+  ],
+  "companies": [
+    [
+      "Taiwan Semiconductor",
+      "Taiwan",
+      7.0
+    ],
+    [
+      "Nestlé",
+      "Svizzera",
+      4.0
+    ],
+    [
+      "Samsung",
+      "Corea del Sud",
+      3.8
+    ],
+    [
+      "ASML",
+      "Paesi Bassi",
+      3.2
+    ],
+    [
+      "Roche",
+      "Svizzera",
+      2.9
+    ],
+    [
+      "Novartis",
+      "Svizzera",
+      2.8
+    ],
+    [
+      "LVMH",
+      "Francia",
+      2.5
+    ],
+    [
+      "AstraZeneca",
+      "UK",
+      2.2
+    ],
+    [
+      "Unilever",
+      "UK",
+      1.9
+    ],
+    [
+      "Shell",
+      "UK",
+      1.8
+    ],
+    [
+      "Toyota",
+      "Giappone",
+      1.6
+    ],
+    [
+      "Sony",
+      "Giappone",
+      1.4
+    ],
+    [
+      "Commonwealth Bank",
+      "Australia",
+      1.3
+    ]
+  ]
+}

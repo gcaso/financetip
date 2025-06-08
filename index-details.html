@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Dettagli Indice</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    fetch('data/menu.html')
+      .then(response => response.text())
+      .then(html => document.getElementById("menu").innerHTML = html);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const index = urlParams.get('index');
+
+    fetch(`data/${index}.json`)
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("index-name").textContent = data.name;
+
+        const topCountries = data.countries.slice(0, 10);
+        const otherCountries = data.countries.slice(10);
+        const otherCountriesWeight = otherCountries.reduce((sum, [, w]) => sum + w, 0);
+        if (otherCountriesWeight > 0) topCountries.push(["Altri", parseFloat(otherCountriesWeight.toFixed(2))]);
+
+        const countryLabels = topCountries.map(c => c[0]);
+        const countryWeights = topCountries.map(c => c[1]);
+
+        new Chart(document.getElementById("countryChart"), {
+          type: "pie",
+          data: {
+            labels: countryLabels,
+            datasets: [{ data: countryWeights }]
+          }
+        });
+
+        const topCompanies = data.companies.slice(0, 10);
+        const otherCompanies = data.companies.slice(10);
+        const otherCompaniesWeight = otherCompanies.reduce((sum, [, , w]) => sum + w, 0);
+        if (otherCompaniesWeight > 0) topCompanies.push(["Altri", "Vari", parseFloat(otherCompaniesWeight.toFixed(2))]);
+
+        const companyLabels = topCompanies.map(c => c[0]);
+        const companyWeights = topCompanies.map(c => c[2]);
+
+        new Chart(document.getElementById("companyChart"), {
+          type: "pie",
+          data: {
+            labels: companyLabels,
+            datasets: [{ data: companyWeights }]
+          }
+        });
+
+        const tbody = document.getElementById("companyTableBody");
+        topCompanies.forEach(([name, country, weight]) => {
+          const row = `<tr><td>${name}</td><td>${country}</td><td>${weight}%</td></tr>`;
+          tbody.insertAdjacentHTML("beforeend", row);
+        });
+      });
+  </script>
+</head>
+<body>
+  <div id="menu"></div>
+  <main>
+    <h1 id="index-name"></h1>
+    <section>
+      <h2>Distribuzione Geografica</h2>
+      <canvas id="countryChart" width="400" height="400"></canvas>
+    </section>
+    <section>
+      <h2>Aziende Principali</h2>
+      <canvas id="companyChart" width="400" height="400"></canvas>
+    </section>
+    <section>
+      <h2>Tabella Aziende</h2>
+      <table border="1">
+        <thead><tr><th>Nome</th><th>Paese</th><th>Peso (%)</th></tr></thead>
+        <tbody id="companyTableBody"></tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
